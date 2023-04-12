@@ -18,5 +18,7 @@ class Note extends Model
         'content',
         'x_coordinate',
         'y_coordinate',
+        'width',
+        'height',
     ];
 }
