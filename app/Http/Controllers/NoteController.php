@@ -5,13 +5,15 @@ namespace App\Http\Controllers;
 use App\Http\Resources\NoteResource;
 use App\Models\Note;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Routing\ResponseFactory;
 
 class NoteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): ResourceCollection
     {
         //filter by user if token exists
 
@@ -21,9 +23,11 @@ class NoteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): NoteResource
     {
-        //validation
+        $validatedData = $request->validate([
+            'content' => 'required|string|max:2000'
+        ]);
 
         $note = Note::create($validatedData);
 
@@ -31,34 +35,24 @@ class NoteController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Note $note)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Note $note)
+    public function update(Request $request, Note $note): ResponseFactory
     {
-        //validation
+        $validatedData = $request->validate([
+            'content' => 'required|string|max:2000'
+        ]);
 
-        $data = $request->all();
-        $note->update($data);
+        $note->update($validatedData);
 
         return response('', 204);
-        // return new NoteResource($note);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Note $note)
+    public function destroy(Note $note): ResponseFactory
     {
-        //
-
         $note->delete();
 
         //HTTP 204 No Content success status response
