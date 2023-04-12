@@ -13,9 +13,15 @@ function App() {
       })
   }, [])
 
+  const handleContentChange = (noteId, noteNewContent) => {
+    setNotes(oldNotes => oldNotes.map(note => note.id === noteId 
+      ? {...note, content: noteNewContent} 
+      : note))
+  }
+
   return (
     <>
-    {notes.map((note) => <Note note={note} key={note.id} />)}
+    {notes.map((note) => <Note note={note} key={note.id} onContentChange={handleContentChange} />)}
     </>
   )
 }
