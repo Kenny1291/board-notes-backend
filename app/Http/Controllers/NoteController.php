@@ -6,7 +6,6 @@ use App\Http\Resources\NoteResource;
 use App\Models\Note;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
-use Illuminate\Routing\ResponseFactory;
 
 class NoteController extends Controller
 {
@@ -37,10 +36,10 @@ class NoteController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Note $note): ResponseFactory
+    public function update(Request $request, Note $note)
     {
         $validatedData = $request->validate([
-            'content' => 'required|string|max:2000'
+            'content' => 'nullable|string|max:2000'
         ]);
 
         $note->update($validatedData);
@@ -51,7 +50,7 @@ class NoteController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Note $note): ResponseFactory
+    public function destroy(Note $note)
     {
         $note->delete();
 
