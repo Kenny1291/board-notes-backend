@@ -16,8 +16,6 @@ export default function Note({note, onContentChange}) {
     }
       
     return (
-        <div>
-            <input type="text" value={note.content} onChange={updateContent} />
-        </div>
+        <textarea className="bg-yellow-note m-4 p-5 min-h-[13rem] shadow-xl" type="text" value={note.content} onChange={updateContent} />
     )
 }
