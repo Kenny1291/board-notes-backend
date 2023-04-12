@@ -45,9 +45,11 @@ class NoteController extends Controller
     {
         //validation
 
-        $note->update($validatedData);
+        $data = $request->all();
+        $note->update($data);
 
-        return new NoteResource($note);
+        return response('', 204);
+        // return new NoteResource($note);
     }
 
     /**
