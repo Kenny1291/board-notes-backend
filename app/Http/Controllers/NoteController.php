@@ -39,7 +39,9 @@ class NoteController extends Controller
     public function update(Request $request, Note $note)
     {
         $validatedData = $request->validate([
-            'content' => 'nullable|string|max:2000'
+            'content' => 'nullable|string|max:2000',
+            'x_coordinate' => 'nullable|numeric',
+            'y_coordinate' => 'nullable|numeric',
         ]);
 
         $note->update($validatedData);

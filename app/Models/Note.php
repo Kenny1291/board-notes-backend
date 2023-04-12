@@ -15,6 +15,8 @@ class Note extends Model
      * @var array
      */
     protected $fillable = [
-        'content'
+        'content',
+        'x_coordinate',
+        'y_coordinate',
     ];
 }

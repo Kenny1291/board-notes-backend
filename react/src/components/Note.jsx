@@ -15,10 +15,16 @@ export default function Note({note, onContentChange}) {
         onContentChange(note.id, e.target.value)
         sendUpdateRequest(note.id, e.target.value)
     }
+
+    const savePosition = (data) => {
+        axiosClient.put(`/notes/${note.id}`, {x_coordinate: data.x, y_coordinate: data.y})
+    }
       
     return (
         <Draggable
             handle=".handle"
+            onStop={savePosition}
+            defaultPosition={{x: note.x_coordinate, y: note.y_coordinate}}
         >
             <div className="w-fit h-fit">
                 <div className="handle text-center mt-4 cursor-move"><span className="material-icons-round">drag_handle</span></div>
