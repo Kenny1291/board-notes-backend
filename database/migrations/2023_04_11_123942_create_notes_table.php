@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('content', 2000)->nullable();
+            $table->smallInteger('x_coordinate')->nullable();
+            $table->smallInteger('y_coordinate')->nullable();
         });
     }
 

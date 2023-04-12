@@ -17,6 +17,8 @@ class NoteResource extends JsonResource
         return [
             'id' => $this->id,
             'content' => $this->content,
+            'x' => $this->x_coordinate,
+            'y' => $this->y_coordinate,
         ];
     }
 }
