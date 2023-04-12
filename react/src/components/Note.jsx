@@ -26,13 +26,19 @@ export default function Note({note, onContentChange}) {
     useEffect(() => {
         const resizeObserver = new ResizeObserver((entries) => {
             const entry = entries[0]
-            sendUpdateRequest(note.id, {width: entry.content.Rect.width, height: entry.content.Rect.height})
+            sendUpdateRequest(note.id, {width: entry.borderBoxSize[0].inlineSize, height: entry.contentRect.height})
         })
         resizeObserver.observe(textareaRef.current)
         return () => {
             resizeObserver.disconnect()
-        };
-    }, []);
+        }
+    }, [])
+
+    useEffect(() => {
+        console.log(note);
+        textareaRef.current.style.width = `${note.width}px`
+        textareaRef.current.style.height = `${note.height}px`
+    })
       
     return (
         <Draggable

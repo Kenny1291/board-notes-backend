@@ -42,6 +42,8 @@ class NoteController extends Controller
             'content' => 'nullable|string|max:2000',
             'x_coordinate' => 'nullable|numeric',
             'y_coordinate' => 'nullable|numeric',
+            'width' => 'nullable|numeric',
+            'height' => 'nullable|numeric',
         ]);
 
         $note->update($validatedData);
