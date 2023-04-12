@@ -16,7 +16,8 @@ export default function Note({note, onContentChange}) {
         sendUpdateRequest(note.id, e.target.value)
     }
 
-    const savePosition = (data) => {
+    //e arg is required to maintain correct position on page load...
+    const savePosition = (e, data) => {
         axiosClient.put(`/notes/${note.id}`, {x_coordinate: data.x, y_coordinate: data.y})
     }
       
