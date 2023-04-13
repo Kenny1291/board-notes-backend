@@ -3,7 +3,7 @@ import axiosClient from "../axios"
 import { debounce, entries } from "lodash"
 import Draggable from 'react-draggable'
 
-export default function Note({note, onContentChange}) {
+export default function Note({note, onContentChange, fetchNotes}) {
 
     const textareaRef = useRef(null)
 
@@ -42,6 +42,11 @@ export default function Note({note, onContentChange}) {
     const handleDoubleClick = (e) => {
         e.stopPropagation()
     }
+
+    const deleteNote = () => {
+        axiosClient.delete(`/notes/${note.id}`)
+            .then(fetchNotes)
+    }
       
     return (
         <Draggable
@@ -49,8 +54,12 @@ export default function Note({note, onContentChange}) {
             onStop={savePosition}
             defaultPosition={{x: note.x_coordinate, y: note.y_coordinate}}
         >
-            <div className="w-fit h-fit" onDoubleClick={handleDoubleClick}>
-                <div className="handle text-center mt-4 cursor-move"><span className="material-icons-round">drag_handle</span></div>
+            <div className="w-fit h-fit mt-4" onDoubleClick={handleDoubleClick}>
+                <div className="flex">
+                    <div className="basis-1/3"></div>
+                    <div className="handle hover:cursor-grab active:cursor-grabbing basis-1/3 text-center"><span className="material-icons-round">drag_handle</span></div>
+                    <div className="basis-1/3 text-center"><span className="material-icons-round cursor-pointer" onClick={deleteNote}>delete_forever</span></div>
+                </div>
                 <textarea className="bg-yellow-note mx-4 mb-4 p-5 min-h-[13rem] shadow-xl resize" type="text" value={note.content} onChange={updateContent} ref={textareaRef} />
             </div>
         </Draggable>

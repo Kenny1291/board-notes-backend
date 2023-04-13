@@ -40,7 +40,7 @@ function App() {
 
   return (
     <>
-    {notes.map((note) => <Note note={note} key={note.id} onContentChange={handleContentChange} />)}
+    {notes.map((note) => <Note note={note} key={note.id} onContentChange={handleContentChange} fetchNotes={fetchNotes} />)}
     </>
   )
 }
