@@ -25,12 +25,22 @@ function App() {
 
   const createNewNote = () => {
     axiosClient.post('/notes')
-      .then(fetchNotes())
+      .then(fetchNotes)
   }
+
+  useEffect(() => {
+    const handleDoubleClick = () => {
+      console.log('DOUBLE CLICK')
+      createNewNote()
+    }
+    document.body.addEventListener('dblclick', handleDoubleClick)
+    return () => {
+      document.body.removeEventListener('dblclick', handleDoubleClick)
+    }
+  }, [])
 
   return (
     <>
-    <button onClick={createNewNote}>NEW NOTE</button>
     {notes.map((note) => <Note note={note} key={note.id} onContentChange={handleContentChange} />)}
     </>
   )
