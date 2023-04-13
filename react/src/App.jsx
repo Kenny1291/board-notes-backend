@@ -23,14 +23,14 @@ function App() {
       : note))
   }
 
-  const createNewNote = () => {
-    axiosClient.post('/notes')
+  const createNewNote = (x, y) => {
+    axiosClient.post('/notes', {x_coordinate: x, y_coordinate: y})
       .then(fetchNotes)
   }
 
   useEffect(() => {
-    const handleDoubleClick = () => {
-      createNewNote()
+    const handleDoubleClick = (e) => {
+      createNewNote(e.pageX, e.pageY)
     }
     document.body.addEventListener('dblclick', handleDoubleClick)
     return () => {

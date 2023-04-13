@@ -38,7 +38,12 @@ class NoteController extends Controller
      */
     public function store(Request $request)
     {
-        TemporaryUser::whereIp($request->ip())->first()->notes()->create([]);
+        $validatedData = $request->validate([
+            'x_coordinate' => 'nullable|numeric',
+            'y_coordinate' => 'nullable|numeric',
+        ]);
+
+        TemporaryUser::whereIp($request->ip())->first()->notes()->create($validatedData);
 
         return response('', 204);;
     }
