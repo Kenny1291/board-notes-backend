@@ -35,7 +35,6 @@ export default function Note({note, onContentChange}) {
     }, [])
 
     useEffect(() => {
-        console.log(note);
         textareaRef.current.style.width = `${note.width}px`
         textareaRef.current.style.height = `${note.height}px`
     })

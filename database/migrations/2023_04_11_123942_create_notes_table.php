@@ -19,6 +19,7 @@ return new class extends Migration
             $table->smallInteger('y_coordinate')->nullable();
             $table->smallInteger('width')->nullable();
             $table->smallInteger('height')->nullable();
+            $table->foreignId('temporary_user_id')->nullable()->constrained();
         });
     }
 
