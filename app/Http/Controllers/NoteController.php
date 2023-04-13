@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\NoteResource;
 use App\Models\Note;
+use App\Models\TemporaryUser;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
@@ -12,11 +13,22 @@ class NoteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): ResourceCollection
+    public function index(Request $request)
     {
-        //filter by user if token exists
+        $ip = $request->ip();
 
-        return NoteResource::collection(Note::all());
+        $tmpUser = TemporaryUser::whereIp($ip)->first();
+
+        if($tmpUser)
+        {
+            return NoteResource::collection($tmpUser->notes()->get());
+        }
+        else 
+        {
+            TemporaryUser::create([
+                'ip' => $ip
+            ]);
+        }
     }
 
     /**
