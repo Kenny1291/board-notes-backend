@@ -6,11 +6,15 @@ function App() {
 
   const [notes, setNotes] = useState([])
 
-  useEffect(() => {
+  const fetchNotes = () => {
     axiosClient.get('/notes')
-      .then(response => {
-        setNotes(response.data)
-      })
+    .then(response => {
+      setNotes(response.data)
+    })
+  }
+
+  useEffect(() => {
+    fetchNotes()
   }, [])
 
   const handleContentChange = (noteId, noteNewContent) => {
@@ -19,8 +23,14 @@ function App() {
       : note))
   }
 
+  const createNewNote = () => {
+    axiosClient.post('/notes')
+      .then(fetchNotes())
+  }
+
   return (
     <>
+    <button onClick={createNewNote}>NEW NOTE</button>
     {notes.map((note) => <Note note={note} key={note.id} onContentChange={handleContentChange} />)}
     </>
   )

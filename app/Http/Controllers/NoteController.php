@@ -13,7 +13,7 @@ class NoteController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index(Request $request): ResourceCollection
     {
         $ip = $request->ip();
 
@@ -28,21 +28,19 @@ class NoteController extends Controller
             TemporaryUser::create([
                 'ip' => $ip
             ]);
+
+            return NoteResource::collection([]);
         }
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): NoteResource
+    public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'content' => 'required|string|max:2000'
-        ]);
+        TemporaryUser::whereIp($request->ip())->first()->notes()->create([]);
 
-        $note = Note::create($validatedData);
-
-        return new NoteResource($note);
+        return response('', 204);;
     }
 
     /**
