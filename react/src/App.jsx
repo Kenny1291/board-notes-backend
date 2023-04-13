@@ -30,7 +30,6 @@ function App() {
 
   useEffect(() => {
     const handleDoubleClick = () => {
-      console.log('DOUBLE CLICK')
       createNewNote()
     }
     document.body.addEventListener('dblclick', handleDoubleClick)

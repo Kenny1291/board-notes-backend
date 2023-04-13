@@ -38,6 +38,10 @@ export default function Note({note, onContentChange}) {
         textareaRef.current.style.width = `${note.width}px`
         textareaRef.current.style.height = `${note.height}px`
     })
+
+    const handleDoubleClick = (e) => {
+        e.stopPropagation()
+    }
       
     return (
         <Draggable
@@ -45,7 +49,7 @@ export default function Note({note, onContentChange}) {
             onStop={savePosition}
             defaultPosition={{x: note.x_coordinate, y: note.y_coordinate}}
         >
-            <div className="w-fit h-fit">
+            <div className="w-fit h-fit" onDoubleClick={handleDoubleClick}>
                 <div className="handle text-center mt-4 cursor-move"><span className="material-icons-round">drag_handle</span></div>
                 <textarea className="bg-yellow-note mx-4 mb-4 p-5 min-h-[13rem] shadow-xl resize" type="text" value={note.content} onChange={updateContent} ref={textareaRef} />
             </div>
