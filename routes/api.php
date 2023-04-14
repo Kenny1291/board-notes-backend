@@ -20,4 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
-Route::apiResource('notes', NoteController::class);
+Route::apiResource('api/notes', NoteController::class);
