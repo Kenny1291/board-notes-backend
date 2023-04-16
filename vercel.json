@@ -1,7 +1,8 @@
 {
     "version": 2,
     "functions": {
-        "api/index.php": { "runtime": "vercel-php@0.6.0" }
+        "api/index.php": { "runtime": "vercel-php@0.6.0" },
+        "api/cron.php": { "runtime": "vercel-php@0.6.0" }
     },
     "routes": [{
         "src": "/(.*)",
@@ -22,5 +23,9 @@
         "CACHE_DRIVER": "array",
         "LOG_CHANNEL": "stderr",
         "SESSION_DRIVER": "cookie"
-    }
+    },
+    "crons": [{
+        "path": "/api/cron",
+        "schedule": "0 0 */6 * *"
+    }]
 }
