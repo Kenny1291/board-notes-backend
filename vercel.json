@@ -6,7 +6,7 @@
     },
     "routes": [
     {
-        "src": "/api/cron)",
+        "src": "/api/cron",
         "dest": "/api/cron.php"
     },
     {
