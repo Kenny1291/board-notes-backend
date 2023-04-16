@@ -20,6 +20,7 @@ return new class extends Migration
             $table->smallInteger('width')->nullable();
             $table->smallInteger('height')->nullable();
             $table->foreignId('temporary_user_id')->nullable();
+            $table->smallInteger('z_index')->default(0);
         });
     }
 

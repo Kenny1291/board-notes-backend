@@ -59,6 +59,7 @@ class NoteController extends Controller
             'y_coordinate' => 'nullable|numeric',
             'width' => 'nullable|numeric',
             'height' => 'nullable|numeric',
+            'z_index' => 'nullable|numeric',
         ]);
 
         $note->update($validatedData);

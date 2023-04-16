@@ -21,6 +21,7 @@ class NoteResource extends JsonResource
             'y_coordinate' => $this->y_coordinate,
             'width' => $this->width,
             'height' => $this->height,
+            'z_index' => $this->z_index
         ];
     }
 }
