@@ -21,6 +21,7 @@ class Note extends Model
         'y_coordinate',
         'width',
         'height',
+        'z_index',
     ];
 
     public function temporaryUser(): BelongsTo
