@@ -43,9 +43,9 @@ class NoteController extends Controller
             'y_coordinate' => 'nullable|numeric',
         ]);
 
-        TemporaryUser::whereIp($request->ip())->first()->notes()->create($validatedData);
+        $note = TemporaryUser::whereIp($request->ip())->first()->notes()->create($validatedData);
 
-        return response('', 204);;
+        return new NoteResource($note);
     }
 
     /**
