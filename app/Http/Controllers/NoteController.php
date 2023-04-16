@@ -62,8 +62,6 @@ class NoteController extends Controller
         ]);
 
         $note->update($validatedData);
-
-        // return response('', 204);
     }
 
     /**
@@ -72,8 +70,5 @@ class NoteController extends Controller
     public function destroy(Note $note)
     {
         $note->delete();
-
-        //HTTP 204 No Content success status response
-        // return response('', 204);
     }
 }
