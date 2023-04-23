@@ -15,7 +15,7 @@ A simple web app to take down notes on a board and organize them how you want.
 - React (JavaScript)
 - Laravel (PHP) 
 - HTML
-- CSS
+- Tailwind CSS
 - MySQL
 
 ## 🏗️ Deployment
