@@ -53,7 +53,6 @@ $response = $kernel->handle(
     $request = Request::capture()
 )->send();
 
-//Keep alive PlanetScale DB
-DB::table('notes')->select()->first();
+DB::unprepared('INSERT INTO `keep_alive_planetscale` (`id`) VALUES (NULL);');
 
 $kernel->terminate($request, $response);
